@@ -1,4 +1,4 @@
-/* Covid 19 Data Exploration // Исследование данных COVID 19
+/* Covid 19 Data Exploration // Г€Г±Г±Г«ГҐГ¤Г®ГўГ Г­ГЁГҐ Г¤Г Г­Г­Г»Гµ COVID 19
 
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
@@ -10,7 +10,7 @@ from PortfolioProject..CovidDeaths
 Where continent is not null 
 order by 3,4
 
--- Select Data that we are going to be starting with // Выберем данные, с которыми мы будем работать
+-- Select Data that we are going to be starting with // Г‚Г»ГЎГҐГ°ГҐГ¬ Г¤Г Г­Г­Г»ГҐ, Г± ГЄГ®ГІГ®Г°Г»Г¬ГЁ Г¬Г» ГЎГіГ¤ГҐГ¬ Г°Г ГЎГ®ГІГ ГІГј
 
 
 select location, date, total_cases, new_cases, total_deaths, population
@@ -19,8 +19,8 @@ Where continent is not null
 order by 1,2
 
 
--- Total Cases vs Total Deaths // Общее количество случаев заболевания по сравнению с общим количеством смертей
--- Shows the probability of death in case of covid disease infection in Russia (my location) // Показывает вероятность смерти в случае заражения ковидными заболеваниями в России (мое местоположение)
+-- Total Cases vs Total Deaths // ГЋГЎГ№ГҐГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±Г«ГіГ·Г ГҐГў Г§Г ГЎГ®Г«ГҐГўГ Г­ГЁГї ГЇГ® Г±Г°Г ГўГ­ГҐГ­ГЁГѕ Г± Г®ГЎГ№ГЁГ¬ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ®Г¬ Г±Г¬ГҐГ°ГІГҐГ©
+-- Shows the probability of death in case of covid disease infection in Russia (my location) // ГЏГ®ГЄГ Г§Г»ГўГ ГҐГІ ГўГҐГ°Г®ГїГІГ­Г®Г±ГІГј Г±Г¬ГҐГ°ГІГЁ Гў Г±Г«ГіГ·Г ГҐ Г§Г Г°Г Г¦ГҐГ­ГЁГї ГЄГ®ГўГЁГ¤Г­Г»Г¬ГЁ Г§Г ГЎГ®Г«ГҐГўГ Г­ГЁГїГ¬ГЁ Гў ГђГ®Г±Г±ГЁГЁ (Г¬Г®ГҐ Г¬ГҐГ±ГІГ®ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ)
 
 
 select location, date, total_cases, total_deaths, (CAST((total_deaths) AS Float) / total_cases) * 100 AS DeathPercentage
@@ -29,15 +29,15 @@ WHERE location like '%russia'
 and continent is not null 
 order by 1,2
 
---total cases vs population // Общее количество случаев по сравнению с населением
---Shows what percentage of population infected with Covid // Показывает, какой процент населения инфицирован Covid
+--total cases vs population // ГЋГЎГ№ГҐГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±Г«ГіГ·Г ГҐГў ГЇГ® Г±Г°Г ГўГ­ГҐГ­ГЁГѕ Г± Г­Г Г±ГҐГ«ГҐГ­ГЁГҐГ¬
+--Shows what percentage of population infected with Covid // ГЏГ®ГЄГ Г§Г»ГўГ ГҐГІ, ГЄГ ГЄГ®Г© ГЇГ°Г®Г¶ГҐГ­ГІ Г­Г Г±ГҐГ«ГҐГ­ГЁГї ГЁГ­ГґГЁГ¶ГЁГ°Г®ГўГ Г­ Covid
 
 select location, date, population, total_cases, total_deaths, (CAST((total_cases) AS Float) / population) * 100 AS PercentagePopulationInfected
 from PortfolioProject..CovidDeaths
 WHERE location like '%russia'
 order by 1,2
 
--- Countries with Highest Infection Rate compared to Population // Страны с самым высоким уровнем инфицирования по сравнению с населением
+-- Countries with Highest Infection Rate compared to Population // Г‘ГІГ°Г Г­Г» Г± Г±Г Г¬Г»Г¬ ГўГ»Г±Г®ГЄГЁГ¬ ГіГ°Г®ГўГ­ГҐГ¬ ГЁГ­ГґГЁГ¶ГЁГ°Г®ГўГ Г­ГЁГї ГЇГ® Г±Г°Г ГўГ­ГҐГ­ГЁГѕ Г± Г­Г Г±ГҐГ«ГҐГ­ГЁГҐГ¬
 
 Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((CAST((total_cases) AS Float)/population))*100 as PercentPopulationInfected
 From PortfolioProject..CovidDeaths
@@ -46,7 +46,7 @@ Group by Location, Population
 order by PercentPopulationInfected desc
 
 
--- Countries with Highest Death Count per Population // Страны с самым высоким показателем смертности на душу населения
+-- Countries with Highest Death Count per Population // Г‘ГІГ°Г Г­Г» Г± Г±Г Г¬Г»Г¬ ГўГ»Г±Г®ГЄГЁГ¬ ГЇГ®ГЄГ Г§Г ГІГҐГ«ГҐГ¬ Г±Г¬ГҐГ°ГІГ­Г®Г±ГІГЁ Г­Г  Г¤ГіГёГі Г­Г Г±ГҐГ«ГҐГ­ГЁГї
 
 Select Location, MAX(cast(Total_deaths as float)) as TotalDeathCount
 From PortfolioProject..CovidDeaths
@@ -56,8 +56,8 @@ Group by Location
 order by TotalDeathCount desc
 
 
--- BREAKING THINGS DOWN BY CONTINENT // РАЗДЕЛЕНИЕ ПО КОНТИНЕНТАМ 
--- Showing contintents with the highest death count per population // Показываем континенты с наибольшим количеством смертей на численность населения
+-- BREAKING THINGS DOWN BY CONTINENT // ГђГЂГ‡Г„Г…Г‹Г…ГЌГ€Г… ГЏГЋ ГЉГЋГЌГ’Г€ГЌГ…ГЌГ’ГЂГЊ 
+-- Showing contintents with the highest death count per population // ГЏГ®ГЄГ Г§Г»ГўГ ГҐГ¬ ГЄГ®Г­ГІГЁГ­ГҐГ­ГІГ» Г± Г­Г ГЁГЎГ®Г«ГјГёГЁГ¬ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ®Г¬ Г±Г¬ГҐГ°ГІГҐГ© Г­Г  Г·ГЁГ±Г«ГҐГ­Г­Г®Г±ГІГј Г­Г Г±ГҐГ«ГҐГ­ГЁГї
 
 Select continent, MAX(cast(Total_deaths as float)) as TotalDeathCount
 From PortfolioProject..CovidDeaths
@@ -68,7 +68,7 @@ order by TotalDeathCount desc
 
 
 
--- GLOBAL NUMBERS // ГЛОБАЛЬНЫЕ ПОКАЗАТЕЛИ
+-- GLOBAL NUMBERS // ГѓГ‹ГЋГЃГЂГ‹ГњГЌГ›Г… ГЏГЋГЉГЂГ‡ГЂГ’Г…Г‹Г€
 
 Select SUM(cast(new_cases as float)) as total_cases, SUM(cast(new_deaths as float)) as total_deaths, SUM(cast(new_deaths as float))/SUM(cast(new_cases as float))*100 as DeathPercentage
 From PortfolioProject..CovidDeaths
@@ -78,8 +78,8 @@ where continent is not null
 order by 1,2
 
 
--- Total Population vs Vaccinations // Общее население и количество привитых
--- Shows Percentage of Population that has recieved at least one Covid Vaccine // Показывает процент населения, которое получило хотя бы одну вакцину Ковид
+-- Total Population vs Vaccinations // ГЋГЎГ№ГҐГҐ Г­Г Г±ГҐГ«ГҐГ­ГЁГҐ ГЁ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ°ГЁГўГЁГІГ»Гµ
+-- Shows Percentage of Population that has recieved at least one Covid Vaccine // ГЏГ®ГЄГ Г§Г»ГўГ ГҐГІ ГЇГ°Г®Г¶ГҐГ­ГІ Г­Г Г±ГҐГ«ГҐГ­ГЁГї, ГЄГ®ГІГ®Г°Г®ГҐ ГЇГ®Г«ГіГ·ГЁГ«Г® ГµГ®ГІГї ГЎГ» Г®Г¤Г­Гі ГўГ ГЄГ¶ГЁГ­Гі ГЉГ®ГўГЁГ¤
 
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(float,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
@@ -92,7 +92,7 @@ where dea.continent is not null
 order by 2,3
 
 
--- Using CTE to perform Calculation on Partition By in previous query // Используя CTE для выполнения вычисления по Partition By в предыдущем запросе
+-- Using CTE to perform Calculation on Partition By in previous query // Г€Г±ГЇГ®Г«ГјГ§ГіГї CTE Г¤Г«Гї ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї ГўГ»Г·ГЁГ±Г«ГҐГ­ГЁГї ГЇГ® Partition By Гў ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГҐГ¬ Г§Г ГЇГ°Г®Г±ГҐ
 
 With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
 as
@@ -112,7 +112,7 @@ From PopvsVac
 
 
 
--- Using Temp Table to perform Calculation on Partition By in previous query // Используя таблицу Temp Table для расчета по Partition By в предыдущем запросе
+-- Using Temp Table to perform Calculation on Partition By in previous query // Г€Г±ГЇГ®Г«ГјГ§ГіГї ГІГ ГЎГ«ГЁГ¶Гі Temp Table Г¤Г«Гї Г°Г Г±Г·ГҐГІГ  ГЇГ® Partition By Гў ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГҐГ¬ Г§Г ГЇГ°Г®Г±ГҐ
 
 DROP Table if exists #PercentPopulationVaccinated
 Create Table #PercentPopulationVaccinated
@@ -140,8 +140,7 @@ Select *, (RollingPeopleVaccinated/Population)*100
 From #PercentPopulationVaccinated
 
 
-
- --Creating View to store data for later visualizations // Создаем представление для хранения данных для последующей визуализации
+ --Creating View to store data for later visualizations // Г‘Г®Г§Г¤Г ГҐГ¬ ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ГЁГҐ Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГї Г¤Г Г­Г­Г»Гµ Г¤Г«Гї ГЇГ®Г±Г«ГҐГ¤ГіГѕГ№ГҐГ© ГўГЁГ§ГіГ Г«ГЁГ§Г Г¶ГЁГЁ
 
 Create View PercentPopulationVaccinated as
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
