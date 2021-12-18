@@ -10,8 +10,8 @@ from PortfolioProject..CovidDeaths
 Where continent is not null 
 order by 3,4
 
-
 -- Select Data that we are going to be starting with 
+
 
 select location, date, total_cases, new_cases, total_deaths, population
 from PortfolioProject..CovidDeaths
@@ -22,12 +22,12 @@ order by 1,2
 -- Total Cases vs Total Deaths 
 -- Shows the probability of death in case of covid disease infection in Russia (my location) 
 
+
 select location, date, total_cases, total_deaths, (CAST((total_deaths) AS Float) / total_cases) * 100 AS DeathPercentage
 from PortfolioProject..CovidDeaths
 WHERE location like '%russia'
 and continent is not null 
 order by 1,2
-
 
 --total cases vs population 
 --Shows what percentage of population infected with Covid 
@@ -36,7 +36,6 @@ select location, date, population, total_cases, total_deaths, (CAST((total_cases
 from PortfolioProject..CovidDeaths
 WHERE location like '%russia'
 order by 1,2
-
 
 -- Countries with Highest Infection Rate compared to Population 
 
@@ -58,7 +57,7 @@ order by TotalDeathCount desc
 
 
 -- BREAKING THINGS DOWN BY CONTINENT 
--- Showing contintents with the highest death count per population 
+-- Showing contintents with the highest death count per population
 
 Select continent, MAX(cast(Total_deaths as float)) as TotalDeathCount
 From PortfolioProject..CovidDeaths
@@ -141,6 +140,7 @@ Select *, (RollingPeopleVaccinated/Population)*100
 From #PercentPopulationVaccinated
 
 
+
  --Creating View to store data for later visualizations 
 
 Create View PercentPopulationVaccinated as
@@ -152,4 +152,3 @@ Join PortfolioProject..CovidVaccinations vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not null 
-
