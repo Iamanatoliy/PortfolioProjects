@@ -7,7 +7,7 @@ This Repository hold all of the code and queries from the Portfolio Projects.
 
 **Используемые навыки**: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
-Были выполнены **ad hoc ** запросы по датасету и произведено построение **дашборда** в **Tableau**, где были показаны следующие **метрики**:	
+Были выполнены **ad hoc** запросы по датасету и произведено построение **дашборда** в **Tableau**, где были показаны следующие **метрики**:	
 - Количество заражений в мире
 - Общее количество смертей
 - Процент смертности
